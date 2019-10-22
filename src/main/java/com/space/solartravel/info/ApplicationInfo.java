@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class ApplicationInfo {
 
-    @Autowired
     private Version version;
     private SystemType systemType;
     private SpringCreator springCreator;
 
-    public ApplicationInfo(SpringCreator springCreator) {
+    public ApplicationInfo(Version version, SpringCreator springCreator) {
+        this.version = version;
         this.springCreator = springCreator;
     }
 
