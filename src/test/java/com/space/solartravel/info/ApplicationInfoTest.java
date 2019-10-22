@@ -30,4 +30,12 @@ class ApplicationInfoTest {
         String expectedResult = "ApplicationInfo{version=0.0.1, systemType=null, springCreator=Rod Johnson}";
         assertEquals(expectedResult, testee2.toString());
     }
+
+    @Test
+    void toString_constructorExplicitlyUsed_printsAll() {
+        ApplicationInfo testee3 = new ApplicationInfo(new Version(), new SpringCreator());
+        testee3.setSystemType(new SystemType());
+        String expectedResult = "ApplicationInfo{version=0.0.1, systemType=demo, springCreator=Rod Johnson}";
+        assertEquals(expectedResult, testee3.toString());
+    }
 }
