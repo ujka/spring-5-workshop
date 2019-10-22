@@ -13,4 +13,13 @@ public class ApplicationInfo {
     public void setSystemType(SystemType systemType) {
         this.systemType = systemType;
     }
+
+    @Override
+    public String toString() {
+        return "ApplicationInfo{" +
+                "version=" + version +
+                ", systemType=" + systemType +
+                ", springCreator=" + springCreator +
+                '}';
+    }
 }
