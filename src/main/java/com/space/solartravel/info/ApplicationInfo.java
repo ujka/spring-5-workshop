@@ -1,5 +1,8 @@
 package com.space.solartravel.info;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ApplicationInfo {
 
     private Version version = new Version();
