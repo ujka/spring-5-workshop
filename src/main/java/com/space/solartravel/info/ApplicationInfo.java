@@ -15,6 +15,7 @@ public class ApplicationInfo {
         this.springCreator = springCreator;
     }
 
+    @Autowired
     public void setSystemType(SystemType systemType) {
         this.systemType = systemType;
     }
