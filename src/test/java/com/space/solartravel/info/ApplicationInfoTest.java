@@ -13,18 +13,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class ApplicationInfoTest {
 
     @Autowired
-    private ApplicationInfo testee;
+    private ApplicationInfo testee1;
+
+    @Autowired
+    private ApplicationInfo testee2;
 
     @Test
     void toString_allPropertiesDefined_printsAll() {
-        testee.setSystemType(new SystemType());
+        testee1.setSystemType(new SystemType());
         String expectedResult = "ApplicationInfo{version=0.0.1, systemType=demo, springCreator=Rod Johnson}";
-        assertEquals(expectedResult, testee.toString());
+        assertEquals(expectedResult, testee1.toString());
     }
 
     @Test
     void toString_systemTypeNotSet_printsAllExpectSystemType() {
         String expectedResult = "ApplicationInfo{version=0.0.1, systemType=null, springCreator=Rod Johnson}";
-        assertEquals(expectedResult, testee.toString());
+        assertEquals(expectedResult, testee2.toString());
     }
 }
