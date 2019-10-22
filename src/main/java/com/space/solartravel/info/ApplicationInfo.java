@@ -6,6 +6,10 @@ public class ApplicationInfo {
     private SystemType systemType;
     private SpringCreator springCreator;
 
+    public ApplicationInfo(SpringCreator springCreator) {
+        this.springCreator = springCreator;
+    }
+
     public void setSystemType(SystemType systemType) {
         this.systemType = systemType;
     }
