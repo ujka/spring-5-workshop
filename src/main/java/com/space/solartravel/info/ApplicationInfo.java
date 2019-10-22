@@ -1,11 +1,13 @@
 package com.space.solartravel.info;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ApplicationInfo {
 
-    private Version version = new Version();
+    @Autowired
+    private Version version;
     private SystemType systemType;
     private SpringCreator springCreator;
 
