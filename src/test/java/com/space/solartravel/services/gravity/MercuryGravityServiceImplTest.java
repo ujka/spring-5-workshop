@@ -18,7 +18,8 @@ class MercuryGravityServiceImplTest {
     @Test
     void calculateForceWeight_weightProvided_returnsTheCorrectWeight() {
         double weight = 98.3;
+        double expectedWeight = 37.354;
         double resultWeight = gravityService.calculateForceWeight(weight);
-        assertEquals(weight, resultWeight);
+        assertEquals(expectedWeight, resultWeight);
     }
 }
