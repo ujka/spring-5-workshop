@@ -15,13 +15,37 @@ class GravityServiceImplTest {
 
     @Autowired
     @Qualifier("saturnGravityService")
-    private GravityService gravityService;
+    private GravityService saturnGravityService;
+
+    @Autowired
+    @Qualifier("uranusGravityService")
+    private GravityService uranusGravityService;
+
+    @Autowired
+    @Qualifier("neptuneGravityService")
+    private GravityService neptuneGravityService;
 
     @Test
     void calculateForceWeight_weightProvided_returnsTheCorrectWeightForSaturn() {
         double weight = 98.3;
         double expectedWeight = 91.419;
-        double resultWeight = gravityService.calculateForceWeight(weight);
+        double resultWeight = saturnGravityService.calculateForceWeight(weight);
+        assertEquals(expectedWeight, resultWeight);
+    }
+
+    @Test
+    void calculateForceWeight_weightProvided_returnsTheCorrectWeightForUranus() {
+        double weight = 98.3;
+        double expectedWeight = 90.436;
+        double resultWeight = uranusGravityService.calculateForceWeight(weight);
+        assertEquals(expectedWeight, resultWeight);
+    }
+
+    @Test
+    void calculateForceWeight_weightProvided_returnsTheCorrectWeightForNeptune() {
+        double weight = 98.3;
+        double expectedWeight = 110.096;
+        double resultWeight = neptuneGravityService.calculateForceWeight(weight);
         assertEquals(expectedWeight, resultWeight);
     }
 }

@@ -20,4 +20,14 @@ public class GravityBeanConfiguration {
     public GravityServiceImpl saturnGravityService() {
         return new GravityServiceImpl(0.93);
     }
+
+    @Bean
+    public GravityServiceImpl uranusGravityService() {
+        return new GravityServiceImpl(0.92);
+    }
+
+    @Bean
+    public GravityServiceImpl neptuneGravityService() {
+        return new GravityServiceImpl(1.12);
+    }
 }
