@@ -11,4 +11,9 @@ public class GravityBeanConfiguration {
         return new MarsGravityServiceImpl();
     }
 
+    @Bean
+    public JupiterGravityServiceImpl jupiterGravityService() {
+        return new JupiterGravityServiceImpl();
+    }
+
 }
