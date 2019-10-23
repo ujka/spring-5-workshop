@@ -16,4 +16,8 @@ public class GravityBeanConfiguration {
         return new JupiterGravityServiceImpl();
     }
 
+    @Bean
+    public GravityServiceImpl saturnGravityService() {
+        return new GravityServiceImpl(0.93);
+    }
 }
