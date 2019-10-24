@@ -1,18 +1,13 @@
 package com.space.solartravel.services.gravity;
 
+import com.space.solartravel.services.gravity.util.BaseGravityTest;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = GravityTestConfiguration.class)
-@TestPropertySource("classpath:application.properties")
+@BaseGravityTest
 class GravityServiceImplTest {
 
     @Autowired

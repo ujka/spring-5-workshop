@@ -1,5 +1,8 @@
-package com.space.solartravel.services.gravity;
+package com.space.solartravel.services.gravity.util;
 
+import com.space.solartravel.services.gravity.GravityServiceImpl;
+import com.space.solartravel.services.gravity.JupiterGravityServiceImpl;
+import com.space.solartravel.services.gravity.MarsGravityServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
