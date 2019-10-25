@@ -1,6 +1,7 @@
 package com.space.solartravel;
 
 import com.space.solartravel.configuration.SpaceDeploymentConfiguration;
+import com.space.solartravel.configuration.SpaceSecurityConfiguration;
 import com.space.solartravel.configuration.SpaceSystemConfiguration;
 import com.space.solartravel.info.ApplicationInfo;
 import com.space.solartravel.info.SystemType;
@@ -30,6 +31,9 @@ public class SolarTravelApplication {
 
 		SpaceDeploymentConfiguration spaceDeploymentConfiguration = context.getBean(SpaceDeploymentConfiguration.class);
 		System.out.println(spaceDeploymentConfiguration);
+
+		SpaceSecurityConfiguration spaceSecurityConfiguration = context.getBean(SpaceSecurityConfiguration.class);
+		System.out.println(spaceSecurityConfiguration);
 	}
 
 }
