@@ -1,5 +1,6 @@
 package com.space.solartravel;
 
+import com.space.solartravel.configuration.SpaceDeploymentConfiguration;
 import com.space.solartravel.configuration.SpaceSystemConfiguration;
 import com.space.solartravel.info.ApplicationInfo;
 import com.space.solartravel.info.SystemType;
@@ -26,6 +27,9 @@ public class SolarTravelApplication {
 		//Usage of @ConfigurationProperties
 		SpaceSystemConfiguration spaceSystemConfiguration = context.getBean(SpaceSystemConfiguration.class);
 		System.out.println(spaceSystemConfiguration);
+
+		SpaceDeploymentConfiguration spaceDeploymentConfiguration = context.getBean(SpaceDeploymentConfiguration.class);
+		System.out.println(spaceDeploymentConfiguration);
 	}
 
 }
