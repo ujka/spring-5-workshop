@@ -15,6 +15,7 @@ public class SolarTravelApplication {
 		ApplicationInfo applicationInfo = context.getBean(ApplicationInfo.class);
 		applicationInfo.setSystemType(new SystemType());
 		System.out.println(applicationInfo);
+		System.out.println("JAVA HOME: " + applicationInfo.getJavaHome());
 	}
 
 }
