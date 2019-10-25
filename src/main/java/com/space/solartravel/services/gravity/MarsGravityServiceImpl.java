@@ -1,8 +1,13 @@
 package com.space.solartravel.services.gravity;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+
+@PropertySource("classpath:gravity.properties")
 public class MarsGravityServiceImpl implements GravityService {
 
-    private double surfaceGravity = 0.38;
+    @Value("${gravity.surface_gravity.mars}")
+    private double surfaceGravity;
 
     @Override
     public double calculateForceWeight(double weight) {
