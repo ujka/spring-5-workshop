@@ -70,11 +70,6 @@ class PlanetRepositoryTest {
         assertEquals(91691000L, planet.getDistanceFromEarth());
         assertEquals(1, planet.getOrderInSolarSystem());
 
-        planet.setName("Venus");
-        planet.setGravity(0.91);
-        planet.setDistanceFromEarth(41400000L);
-        planet.setOrderInSolarSystem(2);
-
         testee.delete(planet);
 
         Optional<Planet> deletedPlanet = testee.findById(savedPlanetId);
