@@ -18,7 +18,7 @@ class PlanetRepositoryTest {
 
     @Autowired
     private PlanetRepository testee;
-    private Long savedAstronautId;
+    private Long savedPlanetId;
 
     @BeforeEach
     public void setUpData(){
@@ -29,12 +29,12 @@ class PlanetRepositoryTest {
         planet.setOrderInSolarSystem(1);
 
         Planet savedPlanet = testee.save(planet);
-        this.savedAstronautId = savedPlanet.getId();
+        this.savedPlanetId = savedPlanet.getId();
     }
 
     @Test
     public void findById_hasResultToReturn_readPlanetById() {
-        Planet planet = testee.getOne(savedAstronautId);
+        Planet planet = testee.getOne(savedPlanetId);
         assertEquals("Mercury", planet.getName());
         assertEquals(0.38, planet.getGravity());
         assertEquals(91691000L, planet.getDistanceFromEarth());
@@ -43,7 +43,7 @@ class PlanetRepositoryTest {
 
     @Test
     public void updateExisting_hasResultToReturn_updatedPlanetById() {
-        Planet planet = testee.getOne(savedAstronautId);
+        Planet planet = testee.getOne(savedPlanetId);
         assertEquals("Mercury", planet.getName());
         assertEquals(0.38, planet.getGravity());
         assertEquals(91691000L, planet.getDistanceFromEarth());
@@ -64,7 +64,7 @@ class PlanetRepositoryTest {
 
     @Test
     public void deleteExisting_hasResultToReturn_updatedPlanetById() {
-        Planet planet = testee.getOne(savedAstronautId);
+        Planet planet = testee.getOne(savedPlanetId);
         assertEquals("Mercury", planet.getName());
         assertEquals(0.38, planet.getGravity());
         assertEquals(91691000L, planet.getDistanceFromEarth());
@@ -77,7 +77,7 @@ class PlanetRepositoryTest {
 
         testee.delete(planet);
 
-        Optional<Planet> deletedPlanet = testee.findById(savedAstronautId);
+        Optional<Planet> deletedPlanet = testee.findById(savedPlanetId);
         assertFalse(deletedPlanet.isPresent());
     }
 }
