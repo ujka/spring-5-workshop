@@ -2,7 +2,6 @@ package com.space.solartravel.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,8 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(exclude = "astronauts")
-@ToString(exclude = "astronauts")
+@EqualsAndHashCode(exclude = {"astronauts", "travels"})
 @Entity
 public class SpaceShip {
 
