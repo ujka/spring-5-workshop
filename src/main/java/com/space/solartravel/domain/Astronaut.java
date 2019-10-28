@@ -94,12 +94,25 @@ public class Astronaut {
 
         Astronaut astronaut = (Astronaut) o;
 
-        return id != null ? id.equals(astronaut.id) : astronaut.id == null;
+        if (id != null ? !id.equals(astronaut.id) : astronaut.id != null) return false;
+        if (name != null ? !name.equals(astronaut.name) : astronaut.name != null) return false;
+        if (age != null ? !age.equals(astronaut.age) : astronaut.age != null) return false;
+        if (weight != null ? !weight.equals(astronaut.weight) : astronaut.weight != null) return false;
+        if (gender != astronaut.gender) return false;
+        if (email != null ? !email.equals(astronaut.email) : astronaut.email != null) return false;
+        return assignedSpaceShip != null ? assignedSpaceShip.equals(astronaut.assignedSpaceShip) : astronaut.assignedSpaceShip == null;
 
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (age != null ? age.hashCode() : 0);
+        result = 31 * result + (weight != null ? weight.hashCode() : 0);
+        result = 31 * result + (gender != null ? gender.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (assignedSpaceShip != null ? assignedSpaceShip.hashCode() : 0);
+        return result;
     }
 }
