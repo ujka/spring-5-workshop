@@ -4,35 +4,41 @@ import com.space.solartravel.domain.Astronaut;
 import com.space.solartravel.domain.Gender;
 import com.space.solartravel.domain.Planet;
 import com.space.solartravel.domain.SpaceShip;
+import com.space.solartravel.domain.Travel;
 import com.space.solartravel.repositories.AstronautRepository;
 import com.space.solartravel.repositories.PlanetRepository;
 import com.space.solartravel.repositories.SpaceShipRepository;
+import com.space.solartravel.repositories.TravelRepository;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
-@Profile({"default", "prod"})
-public class DataInitializer implements ApplicationListener<ContextRefreshedEvent> {
+@Profile({"test"})
+public class TestDataInitializer implements ApplicationListener<ContextRefreshedEvent> {
 
     private PlanetRepository planetRepository;
     private SpaceShipRepository spaceShipRepository;
     private AstronautRepository astronautRepository;
+    private TravelRepository travelRepository;
 
-    public DataInitializer(PlanetRepository planetRepository, SpaceShipRepository spaceShipRepository, AstronautRepository astronautRepository) {
+    public TestDataInitializer(PlanetRepository planetRepository, SpaceShipRepository spaceShipRepository, AstronautRepository astronautRepository, TravelRepository travelRepository) {
         this.planetRepository = planetRepository;
         this.spaceShipRepository = spaceShipRepository;
         this.astronautRepository = astronautRepository;
+        this.travelRepository = travelRepository;
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        System.out.println("###### Initializing data #######");
-        initializeData();
+        System.out.println("****** Initializing TEST data ******");
+        initTestData();
     }
 
-    private void initializeData() {
+    private void initTestData() {
         // Planets
         Planet mercury = new Planet();
         mercury.setName("Mercury");
@@ -164,5 +170,47 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
         janeDoe3.setEmail("jane.doe3@johndoe.moc");
         janeDoe3.setGender(Gender.FEMALE);
         astronautRepository.save(janeDoe3);
+
+        Astronaut johnDoe3 = new Astronaut();
+        johnDoe3.setName("John Doe III");
+        johnDoe3.setAge(21);
+        johnDoe3.setWeight(78.4);
+        johnDoe3.setEmail("john.doe3@johndoe.moc");
+        johnDoe3.setGender(Gender.MALE);
+        astronautRepository.save(johnDoe3);
+
+        Astronaut janeDoe4 = new Astronaut();
+        janeDoe4.setName("Jane Doe IV");
+        janeDoe4.setAge(25);
+        janeDoe4.setWeight(60.0);
+        janeDoe4.setEmail("jane.doe4@johndoe.moc");
+        janeDoe4.setGender(Gender.FEMALE);
+        astronautRepository.save(janeDoe4);
+
+        // Assigning astronauts to the SpaceShip
+        spaceShipArtemis.getAstronauts().add(janeDoe1);
+        janeDoe1.setAssignedSpaceShip(spaceShipArtemis);
+        spaceShipArtemis.getAstronauts().add(janeDoe2);
+        janeDoe2.setAssignedSpaceShip(spaceShipArtemis);
+        spaceShipArtemis.getAstronauts().add(janeDoe3);
+        janeDoe3.setAssignedSpaceShip(spaceShipArtemis);
+        spaceShipArtemis.getAstronauts().add(janeDoe4);
+        janeDoe4.setAssignedSpaceShip(spaceShipArtemis);
+        spaceShipArtemis.getAstronauts().add(johnDoe1);
+        johnDoe1.setAssignedSpaceShip(spaceShipArtemis);
+        spaceShipArtemis.getAstronauts().add(johnDoe2);
+        johnDoe2.setAssignedSpaceShip(spaceShipArtemis);
+        spaceShipArtemis.getAstronauts().add(johnDoe3);
+        johnDoe3.setAssignedSpaceShip(spaceShipArtemis);
+        spaceShipRepository.save(spaceShipArtemis);
+
+        // Travel
+        Travel travel = new Travel();
+        travel.setStartedAt(new Date());
+        venus.getTravels().add(travel);
+        travel.setPlanet(venus);
+        spaceShipArtemis.getTravels().add(travel);
+        travel.setSpaceShip(spaceShipArtemis);
+        travelRepository.save(travel);
     }
 }
