@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DataJpaTest
 public class SpaceShipAstronautRepositoriesTest {
@@ -15,6 +16,9 @@ public class SpaceShipAstronautRepositoriesTest {
     @Autowired
     private SpaceShipRepository spaceShipRepository;
     private Long savedSpaceShipId;
+
+    @Autowired
+    private AstronautRepository astronautRepository;
 
     @BeforeEach
     public void setUpData(){
@@ -54,5 +58,15 @@ public class SpaceShipAstronautRepositoriesTest {
         assertEquals(10, assignedSpaceShip.getFuelCapacity());
         assertEquals(1.01, assignedSpaceShip.getLightSpeedUnits());
         assertEquals(34000d, assignedSpaceShip.getWeight());
+    }
+
+    @Test
+    public void deleteSpaceShipById_hasAssignedAstronauts_astronautNotDeleted() {
+        SpaceShip spaceShip = spaceShipRepository.getOne(savedSpaceShipId);
+        Astronaut astronaut1 = spaceShip.getAstronauts().iterator().next();
+
+        spaceShipRepository.deleteById(savedSpaceShipId);
+
+        assertNotNull(astronautRepository.getOne(astronaut1.getId()));
     }
 }

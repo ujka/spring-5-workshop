@@ -24,7 +24,7 @@ public class SpaceShip {
     @OneToMany(targetEntity = Astronaut.class,
             mappedBy = "assignedSpaceShip",
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Astronaut> astronauts = new HashSet<>();
 
     public Long getId() {
