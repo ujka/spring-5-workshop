@@ -1,8 +1,13 @@
 package com.space.solartravel.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class SpaceShip {
@@ -15,6 +20,12 @@ public class SpaceShip {
     private Integer capacity;
     private Integer fuelCapacity;
     private Double weight;
+
+    @OneToMany(targetEntity = Astronaut.class,
+            mappedBy = "assignedSpaceShip",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<Astronaut> astronauts = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -62,6 +73,14 @@ public class SpaceShip {
 
     public void setWeight(Double weight) {
         this.weight = weight;
+    }
+
+    public Set<Astronaut> getAstronauts() {
+        return astronauts;
+    }
+
+    public void setAstronauts(Set<Astronaut> astronauts) {
+        this.astronauts = astronauts;
     }
 
     @Override

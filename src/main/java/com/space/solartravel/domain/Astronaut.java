@@ -6,6 +6,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Astronaut {
@@ -24,6 +26,10 @@ public class Astronaut {
     private Gender gender;
 
     private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "spaceShip_id")
+    private SpaceShip assignedSpaceShip;
 
     public Long getId() {
         return id;
@@ -71,6 +77,14 @@ public class Astronaut {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public SpaceShip getAssignedSpaceShip() {
+        return assignedSpaceShip;
+    }
+
+    public void setAssignedSpaceShip(SpaceShip assignedSpaceShip) {
+        this.assignedSpaceShip = assignedSpaceShip;
     }
 
     @Override
