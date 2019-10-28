@@ -1,5 +1,6 @@
 package com.space.solartravel.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,10 +22,10 @@ public class Travel {
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date endedAt;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Planet planet;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private SpaceShip spaceShip;
 
     public Long getId() {

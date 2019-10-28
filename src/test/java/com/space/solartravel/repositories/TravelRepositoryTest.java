@@ -17,16 +17,11 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 class TravelRepositoryTest {
 
     @Autowired
-    private PlanetRepository planetRepository;
-
-    @Autowired
-    private SpaceShipRepository spaceShipRepository;
-
-    @Autowired
     private TravelRepository testee;
     private Long savedTravelId;
 
     private final Date START_AT = new Date();
+    private SpaceShip spaceShip;
 
     @BeforeEach
     public void setUpData() {
@@ -36,7 +31,7 @@ class TravelRepositoryTest {
         planet.setDistanceFromEarth(91691000L);
         planet.setOrderInSolarSystem(1);
 
-        SpaceShip spaceShip = new SpaceShip();
+        spaceShip = new SpaceShip();
         spaceShip.setName("Anna");
         spaceShip.setCapacity(100);
         spaceShip.setFuelCapacity(10);
@@ -44,7 +39,7 @@ class TravelRepositoryTest {
         spaceShip.setWeight(34000d);
 
         Travel travel = new Travel();
-        travel.setStartedAt(new Date());
+        travel.setStartedAt(START_AT);
         travel.setPlanet(planet);
         travel.setSpaceShip(spaceShip);
 
@@ -55,6 +50,27 @@ class TravelRepositoryTest {
     @Test
     public void findById_hasResultToReturn_readTravelWithPlanetAndShipById() {
         Travel travel = testee.getOne(savedTravelId);
+        Planet planet = travel.getPlanet();
+        SpaceShip spaceShip = travel.getSpaceShip();
+
+        assertEquals(0, START_AT.compareTo(travel.getStartedAt()));
+        assertNull(travel.getEndedAt());
+
+        assertEquals("Mercury", planet.getName());
+        assertEquals(0.38, planet.getGravity());
+        assertEquals(91691000L, planet.getDistanceFromEarth());
+        assertEquals(1, planet.getOrderInSolarSystem());
+
+        assertEquals("Anna", spaceShip.getName());
+        assertEquals(100, spaceShip.getCapacity());
+        assertEquals(10, spaceShip.getFuelCapacity());
+        assertEquals(1.01, spaceShip.getLightSpeedUnits());
+        assertEquals(34000d, spaceShip.getWeight());
+    }
+
+    @Test
+    public void findBySpaceShip_hasResultToReturn_readTravelWithPlanetAndShipInfo() {
+        Travel travel = testee.findAllBySpaceShip(spaceShip).iterator().next();
         Planet planet = travel.getPlanet();
         SpaceShip spaceShip = travel.getSpaceShip();
 
