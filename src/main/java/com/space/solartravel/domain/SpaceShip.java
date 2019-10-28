@@ -31,7 +31,7 @@ public class SpaceShip {
     @OneToMany(targetEntity = Travel.class,
             mappedBy = "spaceShip",
             fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+            cascade = CascadeType.ALL)
     private Set<Travel> travels = new HashSet<>();
 
     public Long getId() {
