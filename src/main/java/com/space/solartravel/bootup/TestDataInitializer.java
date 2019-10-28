@@ -9,6 +9,7 @@ import com.space.solartravel.repositories.AstronautRepository;
 import com.space.solartravel.repositories.PlanetRepository;
 import com.space.solartravel.repositories.SpaceShipRepository;
 import com.space.solartravel.repositories.TravelRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -18,6 +19,7 @@ import java.util.Date;
 
 @Component
 @Profile({"test"})
+@Slf4j
 public class TestDataInitializer implements ApplicationListener<ContextRefreshedEvent> {
 
     private PlanetRepository planetRepository;
@@ -34,7 +36,7 @@ public class TestDataInitializer implements ApplicationListener<ContextRefreshed
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        System.out.println("****** Initializing TEST data ******");
+        log.info("****** Initializing TEST data ******");
         initTestData();
     }
 

@@ -7,6 +7,7 @@ import com.space.solartravel.domain.SpaceShip;
 import com.space.solartravel.repositories.AstronautRepository;
 import com.space.solartravel.repositories.PlanetRepository;
 import com.space.solartravel.repositories.SpaceShipRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Profile({"default", "prod"})
+@Slf4j
 public class DataInitializer implements ApplicationListener<ContextRefreshedEvent> {
 
     private PlanetRepository planetRepository;
@@ -28,7 +30,7 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        System.out.println("###### Initializing data #######");
+        log.info("###### Initializing data #######");
         initializeData();
     }
 
