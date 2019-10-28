@@ -13,10 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class SpaceShipAstronautRepositoriesTest {
 
     @Autowired
-    private AstronautRepository astronautRepository;
-    private Long savedAstronautId;
-
-    @Autowired
     private SpaceShipRepository spaceShipRepository;
     private Long savedSpaceShipId;
 
