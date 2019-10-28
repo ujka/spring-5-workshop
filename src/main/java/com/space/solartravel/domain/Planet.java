@@ -1,9 +1,14 @@
 package com.space.solartravel.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Planet {
@@ -15,6 +20,11 @@ public class Planet {
     private Double gravity;
     private Long distanceFromEarth;
     private Integer orderInSolarSystem;
+    @OneToMany(targetEntity = Travel.class,
+            mappedBy = "planet",
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Travel> travels = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -54,6 +64,14 @@ public class Planet {
 
     public void setOrderInSolarSystem(Integer orderInSolarSystem) {
         this.orderInSolarSystem = orderInSolarSystem;
+    }
+
+    public Set<Travel> getTravels() {
+        return travels;
+    }
+
+    public void setTravels(Set<Travel> travels) {
+        this.travels = travels;
     }
 
     @Override

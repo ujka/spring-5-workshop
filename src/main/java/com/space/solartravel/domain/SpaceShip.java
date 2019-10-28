@@ -27,6 +27,12 @@ public class SpaceShip {
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Astronaut> astronauts = new HashSet<>();
 
+    @OneToMany(targetEntity = Travel.class,
+            mappedBy = "spaceShip",
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Travel> travels = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -81,6 +87,14 @@ public class SpaceShip {
 
     public void setAstronauts(Set<Astronaut> astronauts) {
         this.astronauts = astronauts;
+    }
+
+    public Set<Travel> getTravels() {
+        return travels;
+    }
+
+    public void setTravels(Set<Travel> travels) {
+        this.travels = travels;
     }
 
     @Override
