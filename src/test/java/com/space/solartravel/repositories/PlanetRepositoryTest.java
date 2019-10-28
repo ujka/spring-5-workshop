@@ -7,10 +7,12 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DataJpaTest
@@ -74,5 +76,27 @@ class PlanetRepositoryTest {
 
         Optional<Planet> deletedPlanet = testee.findById(savedPlanetId);
         assertFalse(deletedPlanet.isPresent());
+    }
+
+    @Test
+    public void findByTravelRange_hasResultsToReturn_returnsPlanetsFittingCriteria() {
+        Planet venus = new Planet();
+        venus.setName("Venus");
+        venus.setGravity(0.91);
+        venus.setDistanceFromEarth(41400000L);
+        venus.setOrderInSolarSystem(2);
+        testee.save(venus);
+
+        Planet mars = new Planet();
+        mars.setName("Mars");
+        mars.setGravity(0.38);
+        mars.setDistanceFromEarth(119740000L);
+        mars.setOrderInSolarSystem(4);
+        testee.save(mars);
+
+        List<Planet> planetsInRange = testee.findByDistanceInTravelRange(100000000L);
+        assertEquals(2, planetsInRange.size());
+        assertTrue(planetsInRange.contains(venus));
+        assertFalse(planetsInRange.contains(mars));
     }
 }
