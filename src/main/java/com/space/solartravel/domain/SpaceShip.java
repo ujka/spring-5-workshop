@@ -1,5 +1,7 @@
 package com.space.solartravel.domain;
 
+import lombok.Data;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import javax.persistence.OneToMany;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity
 public class SpaceShip {
 
@@ -34,83 +37,4 @@ public class SpaceShip {
             cascade = CascadeType.ALL)
     private Set<Travel> travels = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Double getLightSpeedUnits() {
-        return lightSpeedUnits;
-    }
-
-    public void setLightSpeedUnits(Double lightSpeedUnits) {
-        this.lightSpeedUnits = lightSpeedUnits;
-    }
-
-    public Integer getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
-    }
-
-    public Integer getFuelCapacity() {
-        return fuelCapacity;
-    }
-
-    public void setFuelCapacity(Integer fuelCapacity) {
-        this.fuelCapacity = fuelCapacity;
-    }
-
-    public Double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Double weight) {
-        this.weight = weight;
-    }
-
-    public Set<Astronaut> getAstronauts() {
-        return astronauts;
-    }
-
-    public void setAstronauts(Set<Astronaut> astronauts) {
-        this.astronauts = astronauts;
-    }
-
-    public Set<Travel> getTravels() {
-        return travels;
-    }
-
-    public void setTravels(Set<Travel> travels) {
-        this.travels = travels;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        SpaceShip spaceShip = (SpaceShip) o;
-
-        return id != null ? id.equals(spaceShip.id) : spaceShip.id == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
 }
