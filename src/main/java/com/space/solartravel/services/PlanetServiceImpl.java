@@ -19,4 +19,9 @@ public class PlanetServiceImpl implements PlanetService {
     public List<Planet> findAllPlanets() {
         return planetRepository.findAll();
     }
+
+    @Override
+    public Planet findById(Long id) {
+        return planetRepository.findById(id).orElse(null);
+    }
 }

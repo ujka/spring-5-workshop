@@ -15,13 +15,11 @@
         <div class="col">
             <div class="row align-items-center">
                 <div class="col text-center" th:each="planet : ${planets}" th:object="${planet}">
-                    <img th:src="@{'/images/'+ ${planet.name} + '.png'}" />
+                    <a th:href="@{'/planet/'+ ${planet.id}}" class="btn btn-light" role="button">
+                        <img th:src="@{'/images/'+ ${planet.name} + '.png'}" />
+                    </a>
                     <br>
                     <span class="text-success" th:text="'Planet: ' + ${planet.name}"></span>
-                    <br>
-                    <span class="text-success" th:text="'Gravity: ' + ${planet.gravity}"></span>
-                    <br>
-                    <span class="text-success" th:text="'Distance: ' + ${planet.distanceFromEarth}"></span>
                 </div>
             </div>
         </div>
@@ -30,7 +28,9 @@
         <div class="col-9">
             <div class="row align-items-center">
                 <div class="col text-center" th:each="spaceShip : ${spaceShips}" th:object="${spaceShip}">
-                    <img th:src="@{/images/spaceship.png}" />
+                    <a th:href="" class="btn btn-light" role="button">
+                        <img th:src="@{/images/spaceship.png}" />
+                    </a>
                     <br>
                     <span class="text-success" th:text="'Planet: ' + ${spaceShip.name}"></span>
                     <br>

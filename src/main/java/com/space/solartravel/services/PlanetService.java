@@ -7,4 +7,6 @@ import java.util.List;
 public interface PlanetService {
 
     List<Planet> findAllPlanets();
+
+    Planet findById(Long id);
 }
