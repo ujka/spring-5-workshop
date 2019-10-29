@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sing me up!</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/style/space.css}">
+    <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-success text-center">Welcome to Solar Travel!</h1>
+        <div class="row">
+            <div class="col">
+                <h2 class="text-success">Sing up for an adventure:</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form th:action="@{'/saveAstronaut'}" th:object="${astronaut}" method="post">
+                    <div class="form-group">
+                        <label class="text-success" for="astronautName">Your name:</label>
+                        <input th:field="*{name}" type="text" class="form-control" id="astronautName" aria-describedby="astronautNameHelp" placeholder="No blanks please">
+                        <small id="astronautNameHelp" class="form-text text-success">You shall be remembered.</small>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-success" for="astronautAge">Your age:</label>
+                        <input th:field="*{age}" type="number" min="1" max="99" class="form-control" id="astronautAge" aria-describedby="astronautAgeHelp" placeholder="From 1 till infinity (99 :))">
+                        <small id="astronautAgeHelp" class="form-text text-success">Think of a number.</small>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-success" for="astronautGender">Gender:</label>
+                        <select id="astronautGender" th:field="*{gender}"  class="form-control">
+                            <option th:each="genderValue : ${T(com.space.solartravel.domain.Gender).values()}"
+                                    th:value="${genderValue.name()}"
+                                    th:text="${genderValue.name()}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-success" for="astronautEmail">Email address</label>
+                        <input th:field="*{email}" type="email" class="form-control" id="astronautEmail" aria-describedby="astronautEmailHelp" placeholder="Enter email">
+                        <small id="astronautEmailHelp" class="form-text text-success">Get the news feed and stuff.</small>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
