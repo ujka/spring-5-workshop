@@ -17,7 +17,7 @@ public class PlanetController {
     }
 
     @GetMapping("/planet/{id}")
-    public String getAstronaut(@PathVariable String id, Model model) {
+    public String getPlanet(@PathVariable String id, Model model) {
         Planet planet = planetService.findById(Long.valueOf(id));
         model.addAttribute("planet", planet);
         return "planet";
