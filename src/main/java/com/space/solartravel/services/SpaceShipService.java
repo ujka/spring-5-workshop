@@ -7,4 +7,6 @@ import java.util.List;
 public interface SpaceShipService {
 
     List<SpaceShip> findAllSpaceShips();
+
+    SpaceShip findById(Long id);
 }

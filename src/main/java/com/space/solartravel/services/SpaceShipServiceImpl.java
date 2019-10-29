@@ -19,4 +19,9 @@ public class SpaceShipServiceImpl implements SpaceShipService {
     public List<SpaceShip> findAllSpaceShips() {
         return spaceShipRepository.findAll();
     }
+
+    @Override
+    public SpaceShip findById(Long id) {
+        return spaceShipRepository.findById(id).orElse(null);
+    }
 }

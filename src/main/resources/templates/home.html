@@ -28,19 +28,11 @@
         <div class="col-9">
             <div class="row align-items-center">
                 <div class="col text-center" th:each="spaceShip : ${spaceShips}" th:object="${spaceShip}">
-                    <a th:href="" class="btn btn-light" role="button">
+                    <a th:href="@{'/spaceShip/'+ ${spaceShip.id}}" class="btn btn-light" role="button">
                         <img th:src="@{/images/spaceship.png}" />
                     </a>
                     <br>
-                    <span class="text-success" th:text="'Planet: ' + ${spaceShip.name}"></span>
-                    <br>
-                    <span class="text-success" th:text="'Light Speed: ' + ${spaceShip.lightSpeedUnits}"></span>
-                    <br>
-                    <span class="text-success" th:text="'Capacity: ' + ${spaceShip.capacity}"></span>
-                    <br>
-                    <span class="text-success" th:text="'Fuel Capacity: ' + ${spaceShip.fuelCapacity}"></span>
-                    <br>
-                    <span class="text-success" th:text="'Weight: ' + ${spaceShip.weight}"></span>
+                    <span class="text-success" th:text="'Name: ' + ${spaceShip.name}"></span>
                 </div>
             </div>
         </div>
