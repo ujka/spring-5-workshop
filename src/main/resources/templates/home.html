@@ -8,9 +8,9 @@
     <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
 </head>
-<body>
+<body class="bg-light">
 <div class="container-fluid">
-    <h1 class="text-success">Welcome to Solar Travel!</h1>
+    <h1 class="text-success text-center">Welcome to Solar Travel!</h1>
     <div class="row">
         <div class="col">
             <div class="row align-items-center">
@@ -28,7 +28,21 @@
     </div>
     <div class="row">
         <div class="col-9">
-            Space ships placeholder
+            <div class="row align-items-center">
+                <div class="col text-center" th:each="spaceShip : ${spaceShips}" th:object="${spaceShip}">
+                    <img th:src="@{/images/spaceship.png}" />
+                    <br>
+                    <span class="text-success" th:text="'Planet: ' + ${spaceShip.name}"></span>
+                    <br>
+                    <span class="text-success" th:text="'Light Speed: ' + ${spaceShip.lightSpeedUnits}"></span>
+                    <br>
+                    <span class="text-success" th:text="'Capacity: ' + ${spaceShip.capacity}"></span>
+                    <br>
+                    <span class="text-success" th:text="'Fuel Capacity: ' + ${spaceShip.fuelCapacity}"></span>
+                    <br>
+                    <span class="text-success" th:text="'Weight: ' + ${spaceShip.weight}"></span>
+                </div>
+            </div>
         </div>
         <div class="col-3 text-center">
             <button type="button" class="btn btn-success">Wanna join? Apply here!<br><img th:src="@{/images/male_astronaut.png}"/></button>
