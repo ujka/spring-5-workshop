@@ -42,6 +42,15 @@
                 </div>
             </form>
         </div>
+        <div class="col">
+            <h4 class="text-success">Assigned astronauts:</h4>
+            <ul class="list-group overflow-auto" style="height: 300px">
+                <li th:each="astronaut : ${assignedAstronauts}" th:object="${astronaut}"
+                    class="list-group-item"
+                    th:text="${astronaut.name} +', Age: ' + ${astronaut.age} + ', Weight(kg): ' + ${astronaut.weight}">
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="row">
         <div class="col">
