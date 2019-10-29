@@ -11,6 +11,29 @@
 <body>
 <div class="container-fluid">
     <h1 class="text-success">Welcome to Solar Travel!</h1>
+    <div class="row">
+        <div class="col">
+            <div class="row align-items-center">
+                <div class="col text-center" th:each="planet : ${planets}" th:object="${planet}">
+                    <img th:src="@{'/images/'+ ${planet.name} + '.png'}" />
+                    <br>
+                    <span class="text-success" th:text="'Planet: ' + ${planet.name}"></span>
+                    <br>
+                    <span class="text-success" th:text="'Gravity: ' + ${planet.gravity}"></span>
+                    <br>
+                    <span class="text-success" th:text="'Distance: ' + ${planet.distanceFromEarth}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-9">
+            Space ships placeholder
+        </div>
+        <div class="col-3 text-center">
+            <button type="button" class="btn btn-success">Wanna join? Apply here!<br><img th:src="@{/images/male_astronaut.png}"/></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>
