@@ -19,7 +19,70 @@
     <div class="row">
         <div class="col">
             <form th:object="${spaceShip}">
-                <img th:src="@{/images/spaceship.png}" />
+                <div class="row">
+                    <div class="col"><img th:src="@{/images/spaceship.png}" /></div>
+                    <div class="col" th:if="${!spaceShip.astronauts.isEmpty() and activeTravel == null}">
+                        <span class="text-success">Travel to:</span>
+                        <div class="row">
+                            <div class="col text-center">
+                                <a th:href="'/startTraveling/Mercury/' + ${spaceShip.id}">
+                                    <img th:src="@{/images/Mercury_small.png}" />
+                                    <br>
+                                    <span>Mercury</span>
+                                </a>
+                            </div>
+                            <div class="col text-center">
+                                <a th:href="'/startTraveling/Venus/' + ${spaceShip.id}">
+                                    <img th:src="@{/images/Venus_small.png}" />
+                                    <br>
+                                    <span>Venus</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <a th:href="'/startTraveling/Mars/' + ${spaceShip.id}">
+                                    <img th:src="@{/images/Mars_small.png}" />
+                                    <br>
+                                    <span>Mars</span>
+                                </a>
+                            </div>
+                            <div class="col text-center">
+                                <a th:href="'/startTraveling/Jupiter/' + ${spaceShip.id}">
+                                    <img th:src="@{/images/Jupiter_small.png}" />
+                                    <br>
+                                    <span>Jupiter</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <a th:href="'/startTraveling/Saturn/' + ${spaceShip.id}">
+                                    <img th:src="@{/images/Saturn_small.png}" />
+                                    <br>
+                                    <span>Saturn</span>
+                                </a>
+                            </div>
+                            <div class="col text-center">
+                                <a th:href="'/startTraveling/Uranus/' + ${spaceShip.id}">
+                                    <img th:src="@{/images/Uranus_small.png}" />
+                                    <br>
+                                    <span>Uranus</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <a th:href="'/startTraveling/Neptune/' + ${spaceShip.id}">
+                                    <img th:src="@{/images/Neptune_small.png}" />
+                                    <br>
+                                    <span>Neptune</span>
+                                </a>
+                            </div>
+                            <div class="col text-center"></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="text-success" for="spaceShipNameReadOnly">Name:</label>
                     <input readonly th:field="${spaceShip.name}" type="text" class="form-control" id="spaceShipNameReadOnly">

@@ -24,4 +24,9 @@ public class PlanetServiceImpl implements PlanetService {
     public Planet findById(Long id) {
         return planetRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public Planet findByName(String name) {
+        return planetRepository.findByName(name);
+    }
 }

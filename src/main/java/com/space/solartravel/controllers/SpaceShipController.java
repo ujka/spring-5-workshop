@@ -1,9 +1,11 @@
 package com.space.solartravel.controllers;
 
 import com.space.solartravel.domain.Astronaut;
+import com.space.solartravel.domain.Planet;
 import com.space.solartravel.domain.SpaceShip;
 import com.space.solartravel.domain.Travel;
 import com.space.solartravel.services.AstronautService;
+import com.space.solartravel.services.PlanetService;
 import com.space.solartravel.services.SpaceShipService;
 import com.space.solartravel.services.TravelService;
 import org.springframework.stereotype.Controller;
@@ -23,10 +25,13 @@ public class SpaceShipController {
 
     private TravelService travelService;
 
-    public SpaceShipController(SpaceShipService spaceShipService, AstronautService astronautService, TravelService travelService) {
+    private PlanetService planetService;
+
+    public SpaceShipController(SpaceShipService spaceShipService, AstronautService astronautService, TravelService travelService, PlanetService planetService) {
         this.spaceShipService = spaceShipService;
         this.astronautService = astronautService;
         this.travelService = travelService;
+        this.planetService = planetService;
     }
 
     @GetMapping("/spaceShip/{id}")
@@ -48,6 +53,15 @@ public class SpaceShipController {
         SpaceShip spaceShip = spaceShipService.findById(spaceShipId);
         Astronaut astronaut = astronautService.findById(astronautId);
         spaceShipService.assignAstronautToTheShip(astronaut, spaceShip);
+        return "redirect:/spaceShip/" + spaceShipId;
+    }
+
+    @RequestMapping("/startTraveling/{planetName}/{spaceShipId}")
+    public String startTraveling(@PathVariable("planetName") String planetName,
+                                 @PathVariable("spaceShipId") Long spaceShipId){
+        SpaceShip spaceShip = spaceShipService.findById(spaceShipId);
+        Planet planet = planetService.findByName(planetName);
+        travelService.startTraveling(planet, spaceShip);
         return "redirect:/spaceShip/" + spaceShipId;
     }
 }

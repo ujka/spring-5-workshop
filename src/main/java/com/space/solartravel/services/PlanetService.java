@@ -9,4 +9,6 @@ public interface PlanetService {
     List<Planet> findAllPlanets();
 
     Planet findById(Long id);
+
+    Planet findByName(String name);
 }

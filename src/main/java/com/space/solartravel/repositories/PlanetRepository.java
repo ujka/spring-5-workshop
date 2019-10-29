@@ -11,4 +11,6 @@ public interface PlanetRepository extends JpaRepository<Planet, Long> {
 
     @Query("select p from Planet p where p.distanceFromEarth <= :travelRange")
     List<Planet> findByDistanceInTravelRange(@Param("travelRange") Long travelRange);
+
+    Planet findByName(String name);
 }
