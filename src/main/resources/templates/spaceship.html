@@ -50,6 +50,12 @@
                     th:text="${astronaut.name} +', Age: ' + ${astronaut.age} + ', Weight(kg): ' + ${astronaut.weight}">
                 </li>
             </ul>
+            <div th:if="${activeTravel != null}">
+                <h4 class="text-success">Traveling to:</h4>
+                <span class="text-success" th:text="'Planet '+ ${activeTravel.planet.name}"/>
+                <br>
+                <span class="text-success" th:text="'Journey started at '+ ${activeTravel.startedAt}"/>
+            </div>
         </div>
     </div>
     <div class="row">
