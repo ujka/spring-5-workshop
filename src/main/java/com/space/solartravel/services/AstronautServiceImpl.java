@@ -20,4 +20,14 @@ public class AstronautServiceImpl implements AstronautService {
     public List<Astronaut> findAllBySpaceShip(SpaceShip spaceShip) {
         return astronautRepository.findByAssignedSpaceShip(spaceShip);
     }
+
+    @Override
+    public List<Astronaut> findAllUnassigned() {
+        return astronautRepository.findAllUnassigned();
+    }
+
+    @Override
+    public Astronaut findById(Long id) {
+        return astronautRepository.findById(id).orElse(null);
+    }
 }

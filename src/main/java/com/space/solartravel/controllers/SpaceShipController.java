@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -31,11 +32,22 @@ public class SpaceShipController {
     @GetMapping("/spaceShip/{id}")
     public String getSpaceShip(@PathVariable String id, Model model) {
         SpaceShip spaceShip = spaceShipService.findById(Long.valueOf(id));
-        List<Astronaut> asssignedAstronauts = astronautService.findAllBySpaceShip(spaceShip);
+        List<Astronaut> assignedAstronauts = astronautService.findAllBySpaceShip(spaceShip);
+        List<Astronaut> unassignedAstronauts = astronautService.findAllUnassigned();
         Travel travel = travelService.findActiveTravelForSpaceShip(spaceShip);
         model.addAttribute("spaceShip", spaceShip);
-        model.addAttribute("assignedAstronauts", asssignedAstronauts);
+        model.addAttribute("assignedAstronauts", assignedAstronauts);
         model.addAttribute("activeTravel", travel);
+        model.addAttribute("availableAstronauts", unassignedAstronauts);
         return "spaceship";
+    }
+
+    @RequestMapping("/assignToShip/{spaceShipId}/{astronautId}")
+    public String assignToShip(@PathVariable("spaceShipId") Long spaceShipId,
+                               @PathVariable("astronautId") Long astronautId){
+        SpaceShip spaceShip = spaceShipService.findById(spaceShipId);
+        Astronaut astronaut = astronautService.findById(astronautId);
+        spaceShipService.assignAstronautToTheShip(astronaut, spaceShip);
+        return "redirect:/spaceShip/" + spaceShipId;
     }
 }

@@ -8,4 +8,8 @@ import java.util.List;
 public interface AstronautService {
 
     List<Astronaut> findAllBySpaceShip(SpaceShip spaceShip);
+
+    List<Astronaut> findAllUnassigned();
+
+    Astronaut findById(Long id);
 }

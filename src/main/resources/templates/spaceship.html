@@ -56,6 +56,16 @@
                 <br>
                 <span class="text-success" th:text="'Journey started at '+ ${activeTravel.startedAt}"/>
             </div>
+            <div th:unless="${activeTravel != null}">
+                <h4 class="text-success">Available astronauts:</h4>
+                <div class="list-group overflow-auto" style="height: 300px">
+                    <a th:each="astronaut : ${availableAstronauts}"
+                       th:object="${astronaut}"
+                       class="list-group-item list-group-item-action"
+                       th:text="${astronaut.name} +', Age: ' + ${astronaut.age} + ', Weight(kg): ' + ${astronaut.weight}"
+                       th:href="'/assignToShip/'+ ${spaceShip.id} + '/' + ${astronaut.id}"/>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
