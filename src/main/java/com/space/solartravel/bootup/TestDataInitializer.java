@@ -189,6 +189,38 @@ public class TestDataInitializer implements ApplicationListener<ContextRefreshed
         janeDoe4.setGender(Gender.FEMALE);
         astronautRepository.save(janeDoe4);
 
+        Astronaut johnDoe4 = new Astronaut();
+        johnDoe4.setName("John Doe IV");
+        johnDoe4.setAge(56);
+        johnDoe4.setWeight(76.1);
+        johnDoe4.setEmail("john.doe4@johndoe.moc");
+        johnDoe4.setGender(Gender.MALE);
+        astronautRepository.save(johnDoe4);
+
+        Astronaut janeDoe5 = new Astronaut();
+        janeDoe5.setName("Jane Doe V");
+        janeDoe5.setAge(24);
+        janeDoe5.setWeight(58.7);
+        janeDoe5.setEmail("jane.doe5@johndoe.moc");
+        janeDoe5.setGender(Gender.FEMALE);
+        astronautRepository.save(janeDoe5);
+
+        Astronaut johnDoe5 = new Astronaut();
+        johnDoe5.setName("John Doe V");
+        johnDoe5.setAge(61);
+        johnDoe5.setWeight(92.0);
+        johnDoe5.setEmail("john.doe5@johndoe.moc");
+        johnDoe5.setGender(Gender.MALE);
+        astronautRepository.save(johnDoe5);
+
+        Astronaut janeDoe6 = new Astronaut();
+        janeDoe6.setName("Jane Doe VI");
+        janeDoe6.setAge(43);
+        janeDoe6.setWeight(53.8);
+        janeDoe6.setEmail("jane.doe6@johndoe.moc");
+        janeDoe6.setGender(Gender.FEMALE);
+        astronautRepository.save(janeDoe6);
+
         // Assigning astronauts to the SpaceShip
         spaceShipArtemis.getAstronauts().add(janeDoe1);
         janeDoe1.setAssignedSpaceShip(spaceShipArtemis);
@@ -196,14 +228,14 @@ public class TestDataInitializer implements ApplicationListener<ContextRefreshed
         janeDoe2.setAssignedSpaceShip(spaceShipArtemis);
         spaceShipArtemis.getAstronauts().add(janeDoe3);
         janeDoe3.setAssignedSpaceShip(spaceShipArtemis);
-        spaceShipArtemis.getAstronauts().add(janeDoe4);
-        janeDoe4.setAssignedSpaceShip(spaceShipArtemis);
+        spaceShipArtemis.getAstronauts().add(janeDoe6);
+        janeDoe6.setAssignedSpaceShip(spaceShipArtemis);
         spaceShipArtemis.getAstronauts().add(johnDoe1);
         johnDoe1.setAssignedSpaceShip(spaceShipArtemis);
         spaceShipArtemis.getAstronauts().add(johnDoe2);
         johnDoe2.setAssignedSpaceShip(spaceShipArtemis);
-        spaceShipArtemis.getAstronauts().add(johnDoe3);
-        johnDoe3.setAssignedSpaceShip(spaceShipArtemis);
+        spaceShipArtemis.getAstronauts().add(johnDoe5);
+        johnDoe5.setAssignedSpaceShip(spaceShipArtemis);
         spaceShipRepository.save(spaceShipArtemis);
 
         // Travel
