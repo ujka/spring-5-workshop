@@ -1,0 +1,32 @@
+<form th:fragment="astronautSavableForm(astronaut)" th:action="@{'/saveAstronaut'}" th:object="${astronaut}" method="post">
+    <input th:if="${astronaut.id != null}" type="hidden" th:field="*{id}">
+    <div class="form-group">
+        <label class="text-success" for="astronautName">Your name:</label>
+        <input th:field="*{name}" type="text" class="form-control" id="astronautName" aria-describedby="astronautNameHelp" placeholder="No blanks please">
+        <small id="astronautNameHelp" class="form-text text-success">You shall be remembered.</small>
+    </div>
+    <div class="form-group">
+        <label class="text-success" for="astronautAge">Your age:</label>
+        <input th:field="*{age}" type="number" min="1" max="99" class="form-control" id="astronautAge" aria-describedby="astronautAgeHelp" placeholder="From 1 till infinity (99 :))">
+        <small id="astronautAgeHelp" class="form-text text-success">Think of a number.</small>
+    </div>
+    <div class="form-group">
+        <label class="text-success" for="astronautWeight">Your weight:</label>
+        <input th:field="*{weight}" type="number" min="1" max="250" step="0.01" class="form-control" id="astronautWeight" aria-describedby="astronautWeightHelp" placeholder="From 1.00 till infinity (200.00 or 250.00 :))">
+        <small id="astronautWeightHelp" class="form-text text-success">Think of a decimal number.</small>
+    </div>
+    <div class="form-group">
+        <label class="text-success" for="astronautGender">Gender:</label>
+        <select id="astronautGender" th:field="*{gender}"  class="form-control">
+            <option th:each="genderValue : ${T(com.space.solartravel.domain.Gender).values()}"
+                    th:value="${genderValue.name()}"
+                    th:text="${genderValue.name()}"></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label class="text-success" for="astronautEmail">Email address</label>
+        <input th:field="*{email}" type="email" class="form-control" id="astronautEmail" aria-describedby="astronautEmailHelp" placeholder="Enter email">
+        <small id="astronautEmailHelp" class="form-text text-success">Get the news feed and stuff.</small>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
