@@ -4,7 +4,9 @@ import com.space.solartravel.domain.Astronaut;
 import com.space.solartravel.services.AstronautService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,5 +29,13 @@ public class AstronautController {
     public String singMeUp(@ModelAttribute Astronaut astronaut){
         astronaut = astronautService.save(astronaut);
         return "redirect:/astronaut/" + astronaut.getId();
+    }
+
+    @GetMapping
+    @RequestMapping("/astronaut/{id}")
+    public String getAstronaut(@PathVariable Long id, Model model) {
+        Astronaut astronaut = astronautService.findById(id);
+        model.addAttribute("astronaut", astronaut);
+        return "astronaut";
     }
 }
