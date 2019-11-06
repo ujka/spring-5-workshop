@@ -38,4 +38,12 @@ public class AstronautController {
         model.addAttribute("astronaut", astronaut);
         return "astronaut";
     }
+
+    @GetMapping
+    @RequestMapping("/updateAstronaut/{id}")
+    public String updateAstronaut(@PathVariable Long id, Model model) {
+        Astronaut astronaut = astronautService.findById(id);
+        model.addAttribute("astronaut", astronaut);
+        return "update_astronaut";
+    }
 }
