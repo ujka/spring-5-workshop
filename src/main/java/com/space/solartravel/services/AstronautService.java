@@ -12,4 +12,6 @@ public interface AstronautService {
     List<Astronaut> findAllUnassigned();
 
     Astronaut findById(Long id);
+
+    Astronaut save(Astronaut astronaut);
 }

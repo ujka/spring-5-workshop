@@ -30,4 +30,9 @@ public class AstronautServiceImpl implements AstronautService {
     public Astronaut findById(Long id) {
         return astronautRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public Astronaut save(Astronaut astronaut) {
+        return astronautRepository.save(astronaut);
+    }
 }
