@@ -11,7 +11,9 @@ import com.space.solartravel.services.TravelService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -63,5 +65,17 @@ public class SpaceShipController {
         Planet planet = planetService.findByName(planetName);
         travelService.startTraveling(planet, spaceShip);
         return "redirect:/spaceShip/" + spaceShipId;
+    }
+
+    @RequestMapping("/craftSpaceShip")
+    public String newSpaceShip(Model model){
+        model.addAttribute("spaceShip", new SpaceShip());
+        return "spaceShip";
+    }
+
+    @PostMapping("/saveSpaceShip")
+    public String saveSpaceShip(@ModelAttribute SpaceShip spaceShip){
+        spaceShip = spaceShipService.save(spaceShip);
+        return "redirect:/spaceShip/" + spaceShip.getId();
     }
 }

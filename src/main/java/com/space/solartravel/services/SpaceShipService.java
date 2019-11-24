@@ -12,4 +12,6 @@ public interface SpaceShipService {
     SpaceShip findById(Long id);
 
     void assignAstronautToTheShip(Astronaut astronaut, SpaceShip spaceShip);
+
+    SpaceShip save(SpaceShip spaceShip);
 }

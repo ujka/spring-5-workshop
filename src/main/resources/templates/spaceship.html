@@ -10,7 +10,48 @@
     <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
 </head>
 <body class="background">
-<div class="container-fluid">
+<div class="container-fluid" th:if="${spaceShip.id == null}">
+    <h1 class="text-success text-center">Spaceship construction site</h1>
+    <div class="row">
+        <div class="col">
+            <h2 class="text-success">Craft your spaceship:</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">"
+            <form th:object="${spaceShip}" th:action="@{'/saveSpaceShip'}" method="post">
+                <img th:src="@{/images/spaceship.png}" />
+                <div class="form-group">
+                    <label class="text-success" for="spaceShipName">Name:</label>
+                    <input th:field="${spaceShip.name}" type="text" class="form-control" id="spaceShipName" placeholder="Think of something outer space">
+                </div>
+                <div class="form-group">
+                    <label class="text-success" for="lightSpeedUnits">Light Speed Units:</label>
+                    <input th:field="${spaceShip.lightSpeedUnits}" type="number" max="6" step="0.01" class="form-control" id="lightSpeedUnits" placeholder="Maximum is 6">
+                </div>
+                <div class="form-group">
+                    <label class="text-success" for="capacity">Capacity:</label>
+                    <input th:field="${spaceShip.capacity}" type="number" min="1" max="500" class="form-control" id="capacity" placeholder="How many astronauts?">
+                </div>
+                <div class="form-group">
+                    <label class="text-success" for="fuelCapacity">Fuel capacity:</label>
+                    <input th:field="${spaceShip.fuelCapacity}" type="number" min="1" max="1000" class="form-control" id="fuelCapacity" placeholder="How much fuel?">
+                </div>
+                <div class="form-group">
+                    <label class="text-success" for="weight">Weight:</label>
+                    <input th:field="${spaceShip.weight}" type="number" min="1" max="80000" step="0.01" class="form-control" id="weight">
+                </div>
+                <button type="submit" class="btn btn-success">Craft</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a th:href="@{/home}" class="btn btn-info" role="button">Go to Home page</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" th:unless="${spaceShip.id == null}">
     <h1 class="text-success text-center">Welcome to Solar Travel!</h1>
     <div class="row">
         <div class="col">

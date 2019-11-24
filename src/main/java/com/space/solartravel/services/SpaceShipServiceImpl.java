@@ -32,4 +32,9 @@ public class SpaceShipServiceImpl implements SpaceShipService {
         astronaut.setAssignedSpaceShip(spaceShip);
         spaceShipRepository.save(spaceShip);
     }
+
+    @Override
+    public SpaceShip save(SpaceShip spaceShip) {
+        return spaceShipRepository.save(spaceShip);
+    }
 }
