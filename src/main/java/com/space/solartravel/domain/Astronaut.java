@@ -2,6 +2,7 @@ package com.space.solartravel.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToOne;
 
 @Data
 @EqualsAndHashCode(exclude = "assignedSpaceShip")
+@ToString(exclude = "assignedSpaceShip")
 @Entity
 public class Astronaut {
 
