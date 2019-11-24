@@ -1,5 +1,9 @@
 package com.space.solartravel.domain;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -9,11 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@Data
+@EqualsAndHashCode(exclude = "assignedSpaceShip")
+@ToString(exclude = "assignedSpaceShip")
 @Entity
 public class Astronaut {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -31,88 +38,4 @@ public class Astronaut {
     @JoinColumn(name = "spaceShip_id")
     private SpaceShip assignedSpaceShip;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Double weight) {
-        this.weight = weight;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public SpaceShip getAssignedSpaceShip() {
-        return assignedSpaceShip;
-    }
-
-    public void setAssignedSpaceShip(SpaceShip assignedSpaceShip) {
-        this.assignedSpaceShip = assignedSpaceShip;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Astronaut astronaut = (Astronaut) o;
-
-        if (id != null ? !id.equals(astronaut.id) : astronaut.id != null) return false;
-        if (name != null ? !name.equals(astronaut.name) : astronaut.name != null) return false;
-        if (age != null ? !age.equals(astronaut.age) : astronaut.age != null) return false;
-        if (weight != null ? !weight.equals(astronaut.weight) : astronaut.weight != null) return false;
-        if (gender != astronaut.gender) return false;
-        if (email != null ? !email.equals(astronaut.email) : astronaut.email != null) return false;
-        return assignedSpaceShip != null ? assignedSpaceShip.equals(astronaut.assignedSpaceShip) : astronaut.assignedSpaceShip == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (age != null ? age.hashCode() : 0);
-        result = 31 * result + (weight != null ? weight.hashCode() : 0);
-        result = 31 * result + (gender != null ? gender.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (assignedSpaceShip != null ? assignedSpaceShip.hashCode() : 0);
-        return result;
-    }
 }

@@ -18,6 +18,13 @@ class TravelRepositoryTest {
 
     @Autowired
     private TravelRepository testee;
+
+    @Autowired
+    private SpaceShipRepository spaceShipRepository;
+
+    @Autowired
+    private PlanetRepository planetRepository;
+
     private Long savedTravelId;
 
     private final Date START_AT = new Date();
@@ -30,6 +37,7 @@ class TravelRepositoryTest {
         planet.setGravity(0.38);
         planet.setDistanceFromEarth(91691000L);
         planet.setOrderInSolarSystem(1);
+        planetRepository.save(planet);
 
         spaceShip = new SpaceShip();
         spaceShip.setName("Anna");
@@ -37,11 +45,15 @@ class TravelRepositoryTest {
         spaceShip.setFuelCapacity(10);
         spaceShip.setLightSpeedUnits(1.01);
         spaceShip.setWeight(34000d);
+        spaceShipRepository.save(spaceShip);
 
         Travel travel = new Travel();
         travel.setStartedAt(START_AT);
         travel.setPlanet(planet);
         travel.setSpaceShip(spaceShip);
+
+        planet.getTravels().add(travel);
+        spaceShip.getTravels().add(travel);
 
         Travel savedTravel = testee.save(travel);
         this.savedTravelId = savedTravel.getId();

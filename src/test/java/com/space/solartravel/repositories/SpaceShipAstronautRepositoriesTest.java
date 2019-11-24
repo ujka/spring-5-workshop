@@ -22,6 +22,8 @@ public class SpaceShipAstronautRepositoriesTest {
     @Autowired
     private AstronautRepository astronautRepository;
     private SpaceShip spaceShip;
+    private Astronaut astronaut;
+    private Astronaut astronaut2;
 
     @BeforeEach
     public void setUpData(){
@@ -32,7 +34,7 @@ public class SpaceShipAstronautRepositoriesTest {
         spaceShip.setLightSpeedUnits(1.01);
         spaceShip.setWeight(34000d);
 
-        Astronaut astronaut = new Astronaut();
+        astronaut = new Astronaut();
         astronaut.setName("John Doe");
         astronaut.setAge(32);
         astronaut.setWeight(98.2);
@@ -40,7 +42,7 @@ public class SpaceShipAstronautRepositoriesTest {
         astronaut.setAssignedSpaceShip(spaceShip);
         spaceShip.getAstronauts().add(astronaut);
 
-        Astronaut astronaut2 = new Astronaut();
+        astronaut2 = new Astronaut();
         astronaut2.setName("John Doe 2");
         astronaut2.setAge(28);
         astronaut2.setWeight(67.9);
@@ -63,11 +65,7 @@ public class SpaceShipAstronautRepositoriesTest {
     @Test
     public void saveSpaceShipWithAstronaut_astrounatProvided_relationshipSaved() {
         SpaceShip spaceShip = spaceShipRepository.getOne(savedSpaceShipId);
-        Astronaut astronaut = spaceShip.getAstronauts().iterator().next();
-        assertEquals("John Doe", astronaut.getName());
-        assertEquals(32, astronaut.getAge());
-        assertEquals(98.2, astronaut.getWeight());
-        assertEquals("john.doe@johndoe.moc", astronaut.getEmail());
+        assertEquals(2, spaceShip.getAstronauts().size());
 
         SpaceShip assignedSpaceShip = astronaut.getAssignedSpaceShip();
         assertEquals(spaceShip, assignedSpaceShip);
@@ -77,6 +75,15 @@ public class SpaceShipAstronautRepositoriesTest {
         assertEquals(10, assignedSpaceShip.getFuelCapacity());
         assertEquals(1.01, assignedSpaceShip.getLightSpeedUnits());
         assertEquals(34000d, assignedSpaceShip.getWeight());
+
+        SpaceShip assignedSpaceShip2 = astronaut2.getAssignedSpaceShip();
+        assertEquals(spaceShip, assignedSpaceShip2);
+
+        assertEquals("Anna", assignedSpaceShip2.getName());
+        assertEquals(100, assignedSpaceShip2.getCapacity());
+        assertEquals(10, assignedSpaceShip2.getFuelCapacity());
+        assertEquals(1.01, assignedSpaceShip2.getLightSpeedUnits());
+        assertEquals(34000d, assignedSpaceShip2.getWeight());
     }
 
     @Test

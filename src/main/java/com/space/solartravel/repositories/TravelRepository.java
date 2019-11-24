@@ -9,4 +9,6 @@ import java.util.List;
 public interface TravelRepository extends JpaRepository<Travel, Long> {
 
     List<Travel> findAllBySpaceShip(SpaceShip spaceShip);
+
+    Travel findBySpaceShipAndStartedAtIsNotNullAndEndedAtIsNull(SpaceShip spaceShip);
 }

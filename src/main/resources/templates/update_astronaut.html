@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Astronaut</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/style/space.css}">
+    <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</head>
+<body class="background">
+    <div class="container">
+        <h1 class="text-success text-center">Our hero!</h1>
+        <div class="row">
+            <div class="col">
+                <h2 class="text-success">Check the data an update:</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div th:replace="fragments/astronaut_savable_form :: astronautSavableForm(${astronaut})"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

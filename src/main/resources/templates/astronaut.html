@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sing me up!</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/style/space.css}">
+    <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</head>
+<body class="background">
+    <div class="container" th:if="${astronaut.id == null}">
+        <h1 class="text-success text-center">Welcome to Solar Travel!</h1>
+        <div class="row">
+            <div class="col">
+                <h2 class="text-success">Sing up for an adventure:</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div th:replace="fragments/astronaut_savable_form :: astronautSavableForm(${astronaut})"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container" th:unless="${astronaut.id == null}">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-success">Our hero:</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form th:object="${astronaut}">
+                    <div class="form-group">
+                        <label class="text-success" for="astronautNameReadOnly">Your name:</label>
+                        <input readonly th:field="${astronaut.name}" type="text" class="form-control" id="astronautNameReadOnly">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-success" for="astronautAgeReadOnly">Your age:</label>
+                        <input readonly th:field="${astronaut.age}" type="number" class="form-control" id="astronautAgeReadOnly">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-success" for="astronautGenderReadOnly">Gender:</label>
+                        <input readonly th:field="${astronaut.gender}" type="text" class="form-control" id="astronautGenderReadOnly">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-success" for="astronautWeightReadOnly">Weight:</label>
+                        <input readonly th:field="${astronaut.weight}" type="text" class="form-control" id="astronautWeightReadOnly">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-success" for="astronautEmailReadOnly">Email address</label>
+                        <input readonly th:field="${astronaut.email}" type="email" class="form-control" id="astronautEmailReadOnly">
+                    </div>
+                </form>
+            </div>
+            <div class="col">
+                <img th:if="${astronaut.gender.name() == 'FEMALE'}" th:src="@{/images/female_astronaut.png}" />
+                <img th:unless="${astronaut.gender.name() == 'FEMALE'}" th:src="@{/images/male_astronaut.png}" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a th:href="@{'/updateAstronaut/'+ ${astronaut.id}}" class="btn btn-success" role="button">Update my data</a>
+                <a th:href="@{/home}" class="btn btn-info" role="button">Go to Home page</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
